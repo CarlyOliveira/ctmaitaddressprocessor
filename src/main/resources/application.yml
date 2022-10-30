@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: addressprocessor
+  port: 8081
+
+spring:
+  application:
+    name: addressprocessor
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: 'update'

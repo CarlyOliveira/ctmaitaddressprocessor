@@ -15,6 +15,20 @@ public class Address {
     private String uf;
     private String numero;
 
+    public Address() {
+    }
+
+    public Address(UUID id, String cep, String logradouro, String complemento, String bairro, String cidade, String uf, String numero) {
+        this.id = id;
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.numero = numero;
+    }
+
     public Address(String cep) {
         this.cep = cep;
     }
