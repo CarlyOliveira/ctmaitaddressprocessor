@@ -34,12 +34,12 @@ public class DynamoDbConfiguration {
     }
 
     @Bean
-    public DynamoDBMapper dynamoDBMapper(final AmazonDynamoDB amazonDynamoDB){
-        return new DynamoDBMapper(amazonDynamoDB);
+    public DynamoDBMapper dynamoDBMapper(){
+        return new DynamoDBMapper(amazonDynamoDB());
     }
 
     @Bean
-    public DynamoDB dynamoDB(final AmazonDynamoDB amazonDynamoDB){
-        return new DynamoDB(amazonDynamoDB);
+    public DynamoDB dynamoDB(){
+        return new DynamoDB(amazonDynamoDB());
     }
 }

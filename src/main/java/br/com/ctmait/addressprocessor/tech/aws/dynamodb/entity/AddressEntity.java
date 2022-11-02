@@ -9,9 +9,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
 @DynamoDBTable(tableName = "tb_address")

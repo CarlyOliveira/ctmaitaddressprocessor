@@ -4,12 +4,11 @@ import br.com.ctmait.addressprocessor.abstraction.actions.AddressSaveAction;
 import br.com.ctmait.addressprocessor.abstraction.process.AddressCreateProcess;
 import br.com.ctmait.addressprocessor.abstraction.validations.AddressValidation;
 import br.com.ctmait.addressprocessor.domain.models.Address;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
+import br.com.ctmait.addressprocessor.tech.infrastructure.annotations.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Named
+@Process
 public class AddressCreateProcessImpl implements AddressCreateProcess {
 
     private static final Logger log = LoggerFactory.getLogger(AddressCreateProcessImpl.class);
@@ -18,7 +17,6 @@ public class AddressCreateProcessImpl implements AddressCreateProcess {
 
     private final AddressSaveAction addressSaveAction;
 
-    @Inject
     public AddressCreateProcessImpl(AddressValidation addressValidation, AddressSaveAction addressSaveAction) {
         this.addressValidation = addressValidation;
         this.addressSaveAction = addressSaveAction;
@@ -27,7 +25,7 @@ public class AddressCreateProcessImpl implements AddressCreateProcess {
     @Override
     public void execute(Address address) {
 
-        log.info("ACPI-E-00", "Iniciando AddressCreateUseCaseImpl com Address", address);
+        log.info("ACPI-E-00", "Iniciando AddressCreateProcessImpl com Address", address);
 
         address.visit(addressValidation::execute);
 
@@ -35,7 +33,7 @@ public class AddressCreateProcessImpl implements AddressCreateProcess {
 
         address.visit(addressSaveAction::execute);
 
-        log.info("ACPI-E-02", "finalizando AddressCreateUseCaseImpl com Address", address);
+        log.info("ACPI-E-02", "finalizando AddressCreateProcessImpl com Address", address);
 
     }
 }

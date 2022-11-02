@@ -1,0 +1,9 @@
+{
+  "QueueName": "ctmait-address-inclusao",
+  "Attributes": {
+    "FifoQueue": "false",
+    "MaximumMessageSize": "1024",
+    "MessageRetentionPeriod": "345600",
+    "RedrivePolicy": "{ \"deadLetterTargetArn\": \"arn:aws:sqs:sa-east-1:000000000000:ctmait-address-inclusao-dlq\", \"maxReceiveCount\": \"3\" }"
+  }
+}

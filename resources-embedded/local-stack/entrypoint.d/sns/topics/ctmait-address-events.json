@@ -1,0 +1,9 @@
+{
+  "Name": "ctmait-address-events",
+  "Attributes": {
+    "FifoTopic": "false",
+	"MaximumMessageSize": "1024",
+    "MessageRetentionPeriod": "345600",
+    "ContentBasedDeduplication": "true"
+  }
+}

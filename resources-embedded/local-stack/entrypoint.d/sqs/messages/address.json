@@ -1,0 +1,24 @@
+{
+  "QueueUrl": "http://localhost:4566/000000000000/ctmait-address-inclusao",
+  "MessageBody": "{\"id\":\"ca0be5c5-6279-4fde-aae6-4391b69aecb2\",\"cep\":\"53300400\",\"logradouro\":\"rua xpto\", \"complemento\":\"casa\",\"bairro\":\"aquele bairro\",\"cidade\":\"aquela cidade\",\"uf\":\"Estado\",\"numero\":\"1000\"}",
+  "DelaySeconds": 0,
+  "MessageAttributes": {
+    "CorrelationId": {
+      "StringValue": "ca0be5c5-6279-4fde-aae6-4391b69aeca1",
+      "DataType": "String"
+    },
+    "contentType": {
+      "DataType": "String",
+      "StringValue": "application/json"
+    },
+    "timestamp": {
+      "DataType": "Number.java.lang.Long",
+      "StringValue":"1623265414"
+    },
+    "id": {
+      "DataType": "String",
+      "StringValue": "ca0be5c5-6279-4fde-aae6-4391b69aeca1"
+    }
+  },
+  "MessageDeduplicationId": ""
+}

@@ -3,7 +3,6 @@ package br.com.ctmait.addressprocessor.tech.rest.resources;
 import br.com.ctmait.addressprocessor.abstraction.process.AddressCreateProcess;
 import br.com.ctmait.addressprocessor.tech.rest.mapper.AddressMapper;
 import br.com.ctmait.addressprocessor.tech.rest.payload.in.AddressPayloadIn;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +11,14 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
 @Slf4j
 public class AddressResources {
 
     private final AddressCreateProcess addressCreateProcess;
+
+    public AddressResources(AddressCreateProcess addressCreateProcess) {
+        this.addressCreateProcess = addressCreateProcess;
+    }
 
     @GetMapping("/v1/addressprocessor/status")
     public ResponseEntity<String> on() {
@@ -36,7 +38,7 @@ public class AddressResources {
 
         log.info("AR-CA-02 ", " Address ", address);
 
-        var response = ResponseEntity.created(URI.create("/api/address/" + address.getId())).build();
+        var response = ResponseEntity.created(URI.create("/api/v1/address/" + address.getId())).build();
 
         log.info("AR-CA-03 ", " Response ", response);
 
