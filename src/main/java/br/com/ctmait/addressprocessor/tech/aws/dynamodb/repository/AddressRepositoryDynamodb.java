@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
-public class AddressRepositoryImpl implements AddressRepository {
+public class AddressRepositoryDynamodb implements AddressRepository {
 
     private final DynamoDBMapper dynamoDBMapper;
 
@@ -22,7 +22,6 @@ public class AddressRepositoryImpl implements AddressRepository {
     public void save(Address address) {
 
         try {
-
             address.setId(UUID.randomUUID());
             var addressEntity = AddressEntityMapper.INSTANCE.map(address);
             DynamoDBTableMapper<AddressEntity, String, ?> dynamoDBTableMapper = dynamoDBMapper.newTableMapper(AddressEntity.class);

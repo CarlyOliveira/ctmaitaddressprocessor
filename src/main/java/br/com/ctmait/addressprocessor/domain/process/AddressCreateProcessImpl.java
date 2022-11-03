@@ -1,5 +1,6 @@
 package br.com.ctmait.addressprocessor.domain.process;
 
+import br.com.ctmait.addressprocessor.abstraction.actions.AddressPublisherAction;
 import br.com.ctmait.addressprocessor.abstraction.actions.AddressSaveAction;
 import br.com.ctmait.addressprocessor.abstraction.process.AddressCreateProcess;
 import br.com.ctmait.addressprocessor.abstraction.validations.AddressValidation;
@@ -17,9 +18,12 @@ public class AddressCreateProcessImpl implements AddressCreateProcess {
 
     private final AddressSaveAction addressSaveAction;
 
-    public AddressCreateProcessImpl(AddressValidation addressValidation, AddressSaveAction addressSaveAction) {
+    private final AddressPublisherAction addressPublisherAction;
+
+    public AddressCreateProcessImpl(AddressValidation addressValidation, AddressSaveAction addressSaveAction, AddressPublisherAction addressPublisherAction) {
         this.addressValidation = addressValidation;
         this.addressSaveAction = addressSaveAction;
+        this.addressPublisherAction = addressPublisherAction;
     }
 
     @Override
@@ -32,6 +36,8 @@ public class AddressCreateProcessImpl implements AddressCreateProcess {
         log.info("ACPI-E-01", "Address", address);
 
         address.visit(addressSaveAction::execute);
+
+        address.visit(addressPublisherAction::execute);
 
         log.info("ACPI-E-02", "finalizando AddressCreateProcessImpl com Address", address);
 
