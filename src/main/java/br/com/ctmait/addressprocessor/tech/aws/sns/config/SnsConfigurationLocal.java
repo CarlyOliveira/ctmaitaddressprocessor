@@ -9,11 +9,11 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sns.model.PublishRequest;
 
-@Configuration
-@Profile({"local"})
+//@Configuration
+//@Profile({"local"})
 public class SnsConfigurationLocal {
 
-    private static final String SERVICE_ENDPOINT = "http://localhost:8001";
+    private static final String SERVICE_ENDPOINT = "http://localhost:4566";
     private static final String ACCESS_KEY = "fakeAccessKeyId";
     private static final String SECRET_KEY = "fakeSecretAccessKey";
     private static String awsRegion = "sa-east-1";
@@ -24,10 +24,11 @@ public class SnsConfigurationLocal {
     @Bean
     public SnsClient snsClient(){
         final AwsBasicCredentials credentials = AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY );
-        return SnsClient.builder()
+        var snsClient =  SnsClient.builder()
                 .region(Region.of(awsRegion))
                 .credentialsProvider(StaticCredentialsProvider.create(credentials))
                 .build();
+        return snsClient;
     }
 
     @Bean

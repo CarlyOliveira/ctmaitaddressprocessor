@@ -10,13 +10,19 @@ if [ -e "$BASE_PATH/dynamodb" ]; then
   bash $BASE_PATH/dynamodb/dynamodb.sh
 fi
 
+if [ -e "$BASE_PATH/sqs" ]; then
+  bash $BASE_PATH/sqs/dlq.sh
+fi
+
+if [ -e "$BASE_PATH/sqs" ]; then
+  bash $BASE_PATH/sqs/queue.sh
+fi
+
 if [ -e "$BASE_PATH/sns" ]; then
   bash $BASE_PATH/sns/sns.sh
 fi
 
-if [ -e "$BASE_PATH/sqs" ]; then
-  bash $BASE_PATH/sqs/sqs.sh
-fi
+
 
 echo -e ""
 echo -e "**********************************"

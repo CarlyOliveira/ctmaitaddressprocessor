@@ -19,6 +19,7 @@
         <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
         <version.lombok>1.18.24</version.lombok>
         <version.maven-compiler-plugin>3.10.1</version.maven-compiler-plugin>
+        <spring.cloud>2.2.6.RELEASE</spring.cloud>
     </properties>
     <dependencies>
         <dependency>
@@ -48,6 +49,19 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-aws</artifactId>-->
+<!--            <version>${spring.cloud}</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-aws-messaging</artifactId>
+            <version>${spring.cloud}</version>
+        </dependency>
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

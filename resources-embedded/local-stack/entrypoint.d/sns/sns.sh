@@ -10,6 +10,13 @@ create_topics() {
   aws sns list-topics
 }
 
+sns_subscribe() {
+  echo -e "Subscribe queue"
+  aws sns subscribe --topic-arn arn:aws:sns:sa-east-1:000000000000:ctmait-address-events --protocol sqs --notification-endpoint arn:aws:sqs:sa-east-1:000000000000:ctmait-address-inclusao --attributes '{"FilterPolicy": "{\"event\": [\"inclusao\"]}"}' --endpoint-url=http://localhost:4566 --region=sa-east-1
+  aws sns subscribe --topic-arn arn:aws:sns:sa-east-1:000000000000:ctmait-address-events --protocol sqs --notification-endpoint arn:aws:sqs:sa-east-1:000000000000:ctmait-address-alteracao --attributes '{"FilterPolicy": "{\"event\": [\"alteracao\"]}"}' --endpoint-url=http://localhost:4566 --region=sa-east-1
+
+}
+
 publish_events() {
   for EVENT_FILE in "${EVENT_FILES[@]}"; do
     echo -e "Sending event from file [$EVENT_FILE]"
@@ -33,6 +40,11 @@ else
 fi
 
 echo -e ""
+
+sns_subscribe
+
+echo -e ""
+
 
 if [ -e "${EVENT_FILES[0]}" ]; then
   echo -e "Sending events into SNS topics..."

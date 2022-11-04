@@ -10,3 +10,26 @@ spring:
 #    show-sql: 'true'
 #    hibernate:
 #      ddl-auto: 'update'
+
+aws:
+  credentials:
+    access-key: fakeAccessKeyId
+    secret-key: fakeSecretAccessKey
+  region:
+    auto: sa-east-1
+    static: sa-east-1
+  sqs:
+    endpoint: http://localhost:4566
+  sns:
+    endpoint: http://localhost:4566
+
+broker:
+  topic:
+    addres-event: ctmait-address-event
+queue:
+  address-inclusao: ctmait-address-inclusao
+  address-inclusao-dlq: ctmait-address-inclusao-dlq
+  address-alteracao: ctmait-address-alteracao
+  address-alteracao-dlq: ctmait-address-alteracao-dlq
+  address-exclusao: ctmait-address-exclusao
+  address-exclusao-dlq: ctmait-address-exclusao-dlq
