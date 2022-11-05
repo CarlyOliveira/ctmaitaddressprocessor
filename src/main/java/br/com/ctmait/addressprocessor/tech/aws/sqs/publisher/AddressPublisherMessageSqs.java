@@ -25,18 +25,18 @@ public class AddressPublisherMessageSqs implements AddressPublisherMessage {
     public void send(Address address) {
 
         try {
-            log.info("APMS-S-00", "Address {} for publisher", address);
+            log.info("APMS-S-00 Address {} for publisher", address);
 
             var payload = AddressPayloadPublisherMapper.INSTANCE.map(address);
 
-            log.info("APMS-S-00", "Pub message payload {}", payload);
+            log.info("APMS-S-00 Pub message payload {}", payload);
 
             queueMessagingTemplate.convertAndSend(queueName,payload);
 
-            log.info("APMS-S-01", "Message payload {} published ", payload);
+            log.info("APMS-S-01 Message payload {} published ", payload);
         }catch (Exception e){
             //TODO trabalhar o state machine em caso de erro -> MOVER PARA NOT_READY
-            log.error("APMS-S-02", "Publisher error {}", e);
+            log.error("APMS-S-02 Error sending address {}", address, e);
         }
     }
 }

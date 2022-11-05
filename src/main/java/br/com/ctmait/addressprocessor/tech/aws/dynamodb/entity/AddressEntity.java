@@ -34,5 +34,9 @@ public class AddressEntity {
     @DynamoDBAttribute(attributeName = "data_inclusao")
     @DynamoDBTypeConverted(converter = LocalDateConverter.class)
     private LocalDate dataInclusao;
+    @DynamoDBAttribute(attributeName = "provider")
+    private String provider;
+    @DynamoDBAttribute(attributeName = "state")
+    private String state;
 
 }

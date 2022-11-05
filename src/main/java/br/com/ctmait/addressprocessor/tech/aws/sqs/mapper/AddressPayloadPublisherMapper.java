@@ -19,6 +19,7 @@ public interface AddressPayloadPublisherMapper {
     @Mapping(source = "source.uf", target = "uf")
     @Mapping(source = "source.numero", target = "numero")
     @Mapping(source = "id", target = "id")
+    @Mapping(source = "source.provider", target = "provider")
     AddressPayloadPublisher map (Address source);
 
 }

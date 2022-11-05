@@ -6,9 +6,6 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class AddressPayloadIn {
     private String cep;
     private String logradouro;
@@ -17,4 +14,5 @@ public class AddressPayloadIn {
     private String cidade;
     private String uf;
     private String numero;
+    private String provider;
 }

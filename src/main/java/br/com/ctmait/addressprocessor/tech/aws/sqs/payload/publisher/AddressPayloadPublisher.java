@@ -18,4 +18,5 @@ public class AddressPayloadPublisher {
     private String cidade;
     private String uf;
     private String numero;
+    private String provider;
 }

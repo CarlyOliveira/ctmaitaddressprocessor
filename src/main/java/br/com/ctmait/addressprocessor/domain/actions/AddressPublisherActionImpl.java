@@ -20,8 +20,8 @@ public class AddressPublisherActionImpl implements AddressPublisherAction {
 
     @Override
     public void execute(Address address) {
-        log.info("APAI-E-00", "Publicando Address", address);
+        log.info("APAI-E-00 Publicando {} Address", address);
         address.visit(addressPublisherMessage::send);
-        log.info("APAI-E-01", "Address Publicado", address);
+        log.info("APAI-E-01 Address {} Publicado", address);
     }
 }

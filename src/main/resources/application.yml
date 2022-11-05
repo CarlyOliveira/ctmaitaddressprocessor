@@ -33,3 +33,7 @@ queue:
   address-alteracao-dlq: ctmait-address-alteracao-dlq
   address-exclusao: ctmait-address-exclusao
   address-exclusao-dlq: ctmait-address-exclusao-dlq
+
+resources:
+  path:
+    get: /addressquery/api/v1/address/

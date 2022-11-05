@@ -18,7 +18,8 @@ public interface AddressMapper {
     @Mapping(source = "source.cidade", target = "cidade")
     @Mapping(source = "source.uf", target = "uf")
     @Mapping(source = "source.numero", target = "numero")
-    @Mapping(target = "id", ignore = true)
-    Address map (AddressPayloadIn source);
+    @Mapping(source = "transactionId", target = "id")
+    @Mapping(source = "source.provider", target = "provider")
+    Address map (AddressPayloadIn source, String transactionId);
 
 }

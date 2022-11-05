@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 public class Address {
 
-    private UUID id;
+    private String id;
     private String cep;
     private String logradouro;
     private String complemento;
@@ -14,36 +14,17 @@ public class Address {
     private String cidade;
     private String uf;
     private String numero;
+    private Provider provider;
+    private State state;
 
-    public Address() {
-    }
-
-    public Address(UUID id, String cep, String logradouro, String complemento, String bairro, String cidade, String uf, String numero) {
-        this.id = id;
-        this.cep = cep;
-        this.logradouro = logradouro;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.uf = uf;
-        this.numero = numero;
-    }
-
-    public Address(String cep) {
-        this.cep = cep;
-    }
-
-    public Address(UUID id) {
-        this.id = id;
-    }
-
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
+
     public String getCep() {
         return cep;
     }
@@ -100,29 +81,48 @@ public class Address {
         this.numero = numero;
     }
 
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Address address)) return false;
-        return Objects.equals(getId(), address.getId());
+        if (!(o instanceof Address)) return false;
+        Address address = (Address) o;
+        return Objects.equals(getId(), address.getId()) && Objects.equals(getCep(), address.getCep()) && Objects.equals(getLogradouro(), address.getLogradouro()) && Objects.equals(getComplemento(), address.getComplemento()) && Objects.equals(getBairro(), address.getBairro()) && Objects.equals(getCidade(), address.getCidade()) && Objects.equals(getUf(), address.getUf()) && Objects.equals(getNumero(), address.getNumero()) && getProvider() == address.getProvider() && getState() == address.getState();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCep(), getLogradouro(), getComplemento(), getBairro(), getCidade(), getUf(), getNumero());
+        return Objects.hash(getId(), getCep(), getLogradouro(), getComplemento(), getBairro(), getCidade(), getUf(), getNumero(), getProvider(), getState());
     }
 
     @Override
     public String toString() {
         return "Address{" +
-                "id='" + id + '\'' +
-                "cep='" + cep + '\'' +
+                "id=" + id +
+                ", cep='" + cep + '\'' +
                 ", logradouro='" + logradouro + '\'' +
                 ", complemento='" + complemento + '\'' +
                 ", bairro='" + bairro + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", uf='" + uf + '\'' +
                 ", numero='" + numero + '\'' +
+                ", provider=" + provider +
+                ", state=" + state +
                 '}';
     }
 

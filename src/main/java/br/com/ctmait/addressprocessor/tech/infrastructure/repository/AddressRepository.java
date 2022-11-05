@@ -1,7 +1,11 @@
 package br.com.ctmait.addressprocessor.tech.infrastructure.repository;
 
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressException;
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressValidationException;
 import br.com.ctmait.addressprocessor.domain.models.Address;
 
 public interface AddressRepository {
-    public void save(Address address);
+    void insert(Address address) throws AddressValidationException, AddressException;
+    void update(Address address) throws AddressValidationException, AddressException;
+    void delete(Address address) throws AddressValidationException, AddressException;
 }

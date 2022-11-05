@@ -5,6 +5,6 @@ import br.com.ctmait.addressprocessor.domain.exceptions.AddressValidationExcepti
 import br.com.ctmait.addressprocessor.domain.models.Address;
 
 @FunctionalInterface
-public interface AddressPublisherAction {
+public interface AddressCreateAction {
     void execute(final Address address) throws AddressValidationException, AddressException;
 }
