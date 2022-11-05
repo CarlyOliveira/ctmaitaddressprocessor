@@ -25,7 +25,7 @@ public class AddressCreateActionImpl implements AddressCreateAction {
     }
 
     @Override
-    public void execute(Address address) {
+    public void execute(Address address) throws AddressValidationException, AddressException{
 
         try {
 
@@ -34,7 +34,6 @@ public class AddressCreateActionImpl implements AddressCreateAction {
             log.info("ACAI-E-00 Criando Address {}", address);
 
             address.visit(this::setState);
-//            address.visit(this::setId);
             address.visit(addressRepository::insert);
 
             log.info("ACAI-E-01 Address Criado {}", address);
@@ -58,10 +57,4 @@ public class AddressCreateActionImpl implements AddressCreateAction {
         address.setState(State.READY);
         log.info("ACAI-SS-01 State setado em Address {}", address);
     }
-
-//    private void setId(Address address){
-//        log.info("ACAI-SI-00 Setando State em Address {}", address);
-//        address.setId(UUID.randomUUID().toString());
-//        log.info("ACAI-SI-01 State setado em Address {}", address);
-//    }
 }

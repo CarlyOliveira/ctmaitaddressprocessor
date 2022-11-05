@@ -26,7 +26,7 @@ public class AddressRepositoryDynamodb implements AddressRepository {
     private final DynamoDBMapper dynamoDBMapper;
 
     @Override
-    public void insert(Address address) {
+    public void insert(Address address) throws AddressValidationException, AddressException{
         log.info("ARD-S-00 Inserindo Address {}", address);
         try {
             Objects.requireNonNull(address, "address cannot null");
@@ -50,7 +50,7 @@ public class AddressRepositoryDynamodb implements AddressRepository {
     }
 
     @Override
-    public void update(Address address) {
+    public void update(Address address) throws AddressValidationException, AddressException{
         log.info("ARD-U-00 Atualizando Address {}", address);
         try {
             Objects.requireNonNull(address, "address cannot null");
@@ -74,7 +74,7 @@ public class AddressRepositoryDynamodb implements AddressRepository {
     }
 
     @Override
-    public void delete(Address address) {
+    public void delete(Address address) throws AddressValidationException, AddressException{
         log.info("ARD-D-00 Deletando Address {}", address);
         try {
             Objects.requireNonNull(address, "address cannot null");

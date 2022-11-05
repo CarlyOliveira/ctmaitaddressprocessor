@@ -31,10 +31,11 @@ public class AddressResources {
 
     @PostMapping("/v1/address")
     public ResponseEntity<?> createAddress(@RequestBody AddressPayloadIn addressPayloadIn,
-                                           @RequestHeader(value = "transactionId") String transactionId) {
+                                           @RequestHeader(value = "transactionId", required = true) String transactionId) {
 
         log.info("AR-CA-00 Request {} transactionId {}", addressPayloadIn, transactionId);
 
+        //TODO criar tratamento no enum para retornar null e não levantar IllegalArgument ao receber um valor que não existe
         var address = AddressMapper.INSTANCE.map(addressPayloadIn, transactionId);
 
         log.info("AR-CA-01  Address {}", address);

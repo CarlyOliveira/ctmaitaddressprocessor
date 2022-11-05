@@ -12,6 +12,8 @@ import br.com.ctmait.addressprocessor.tech.infrastructure.annotations.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 @Process
 public class AddressCreateProcessImpl implements AddressCreateProcess {
 
@@ -30,11 +32,12 @@ public class AddressCreateProcessImpl implements AddressCreateProcess {
     }
 
     @Override
-    public void execute(Address address) {
+    public void execute(Address address) throws AddressValidationException, AddressCreateValidationException, AddressException{
 
         log.info("ACPI-E-00 Iniciando AddressCreateProcessImpl com Address {}", address);
 
         try {
+            Objects.requireNonNull(address, "address cannot null");
 
             address.visit(addressCreateValidation::execute);
 
@@ -42,18 +45,18 @@ public class AddressCreateProcessImpl implements AddressCreateProcess {
 
             address.visit(addressPublisherAction::execute);
 
-            log.info("ACPI-E-02 finalizando AddressCreateProcessImpl com Address", address);
+            log.info("ACPI-E-02 finalizando AddressCreateProcessImpl com Address {}", address);
         }catch (NullPointerException nullPointerException){
             log.error("ACPI-E-03 Erro {} AddressCreateProcessImpl com Address {}", nullPointerException, address);
             throw new AddressCreateValidationException(nullPointerException);
         }catch (AddressCreateValidationException addressCreateValidationException){
-            log.error("ACPI-E-03 Erro {} AddressCreateProcessImpl com Address {}", addressCreateValidationException, address);
+            log.error("ACPI-E-04 Erro {} AddressCreateProcessImpl com Address {}", addressCreateValidationException, address);
             throw addressCreateValidationException;
         }catch (AddressValidationException addressValidationException){
-            log.error("ACPI-E-03 Erro {} AddressCreateProcessImpl com Address {}", addressValidationException, address);
+            log.error("ACPI-E-05 Erro {} AddressCreateProcessImpl com Address {}", addressValidationException, address);
             throw addressValidationException;
         }catch (Exception exception){
-            log.error("ACPI-E-03 rro {} AddressCreateProcessImpl com Address {}", exception, address);
+            log.error("ACPI-E-06 rro {} AddressCreateProcessImpl com Address {}", exception, address);
             throw new AddressException(exception);
         }
     }
