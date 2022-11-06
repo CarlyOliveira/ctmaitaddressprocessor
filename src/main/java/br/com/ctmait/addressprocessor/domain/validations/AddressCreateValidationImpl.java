@@ -46,7 +46,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
 
     private void validateAddress(Address address, HashMap<String, String> errors){
         try {
-            notNullOrEmpty(address, "rabbit cannot null");
+            notNullOrEmpty(address, " address cannot null");
         }catch (Exception e){
             errors.put("Address", e.getMessage());
         }
@@ -55,7 +55,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateId(Address address, HashMap<String, String> errors){
         try {
             var id = UUID.fromString(address.getId());
-            notNullOrEmpty(id, "id cannot null");
+            notNullOrEmpty(id, " id cannot null");
         }catch (Exception e){
             errors.put("id", e.getMessage());
         }
@@ -64,7 +64,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateCep(Address address, HashMap<String, String> errors){
         try {
             var cep = address.getCep();
-            notNullOrEmpty(cep, "cep cannot null");
+            notNullOrEmpty(cep, " cep cannot null");
             validateFormatCep(cep);
         }catch (Exception e){
             errors.put("cep", e.getMessage());
@@ -73,7 +73,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
 
     private void validateFormatCep(String cep){
         if (cep == null || !cep.matches("[0-9]{8}")){
-            throw new IllegalArgumentException("cep format is invalid");
+            throw new IllegalArgumentException(" cep format is invalid");
         }
     }
 
@@ -81,7 +81,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateLogradouro(Address address, HashMap<String, String> errors){
         try {
             var logradouro = address.getLogradouro();
-            notNullOrEmpty(logradouro, "logradouro cannot null");
+            notNullOrEmpty(logradouro, " logradouro cannot null");
         }catch (Exception e){
             errors.put("logradouro", e.getMessage());
         }
@@ -90,7 +90,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateComplemento(Address address, HashMap<String, String> errors){
         try {
             var complemento = address.getComplemento();
-            notNullOrEmpty(complemento, "complemento cannot null");
+            notNullOrEmpty(complemento, " complemento cannot null");
         }catch (Exception e){
             errors.put("complemento", e.getMessage());
         }
@@ -99,7 +99,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateBairro(Address address, HashMap<String, String> errors){
         try {
             var bairro = address.getBairro();
-            notNullOrEmpty(bairro, "bairro cannot null");
+            notNullOrEmpty(bairro, " bairro cannot null");
         }catch (Exception e){
             errors.put("bairro", e.getMessage());
         }
@@ -108,7 +108,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateCidade(Address address, HashMap<String, String> errors){
         try {
             var cidade = address.getCidade();
-            notNullOrEmpty(cidade, "cidade cannot null");
+            notNullOrEmpty(cidade, " cidade cannot null");
         }catch (Exception e){
             errors.put("cidade", e.getMessage());
         }
@@ -117,7 +117,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateUf(Address address, HashMap<String, String> errors){
         try {
             var uf = address.getUf();
-            notNullOrEmpty(uf, "uf cannot null");
+            notNullOrEmpty(uf, " uf cannot null");
         }catch (Exception e){
             errors.put("uf", e.getMessage());
         }
@@ -126,7 +126,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateNumero(Address address, HashMap<String, String> errors){
         try {
             var numero = address.getNumero();
-            notNullOrEmpty(numero, "numero cannot null");
+            notNullOrEmpty(numero, " numero cannot null");
         }catch (Exception e){
             errors.put("numero", e.getMessage());
         }
@@ -135,7 +135,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     private void validateProvider(Address address, HashMap<String, String> errors){
         try {
             var provider = address.getProvider();
-            notNullOrEmpty(provider, "provider cannot null");
+            notNullOrEmpty(provider, " provider value is invalid");
         }catch (Exception e){
             errors.put("provider", e.getMessage());
         }

@@ -1,9 +1,11 @@
 package br.com.ctmait.addressprocessor.tech.aws.sqs.mapper;
 
 import br.com.ctmait.addressprocessor.domain.models.Address;
+import br.com.ctmait.addressprocessor.domain.models.Provider;
 import br.com.ctmait.addressprocessor.tech.aws.sqs.payload.publisher.AddressPayloadPublisher;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -19,7 +21,12 @@ public interface AddressPayloadPublisherMapper {
     @Mapping(source = "source.uf", target = "uf")
     @Mapping(source = "source.numero", target = "numero")
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "source.provider", target = "provider")
+    @Mapping(source = "source.provider", target = "provider", qualifiedByName = "ProviderString")
     AddressPayloadPublisher map (Address source);
+
+    @Named("ProviderString")
+    default String getProviderCode(final Provider provider) {
+        return provider.getCode();
+    }
 
 }
