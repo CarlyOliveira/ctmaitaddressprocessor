@@ -1,8 +1,11 @@
 package br.com.ctmait.addressprocessor.tech.aws.sqs.publisher;
 
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressException;
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressValidationException;
 import br.com.ctmait.addressprocessor.domain.models.Address;
 import br.com.ctmait.addressprocessor.tech.aws.sqs.mapper.AddressPayloadPublisherMapper;
 import br.com.ctmait.addressprocessor.tech.infrastructure.pubsub.AddressPublisherMessage;
+import com.amazonaws.SdkBaseException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,21 +25,23 @@ public class AddressPublisherMessageSqs implements AddressPublisherMessage {
     private final QueueMessagingTemplate queueMessagingTemplate;
 
     @Override
-    public void send(Address address) {
+    public void send(Address address) throws AddressValidationException, AddressException {
 
         try {
-            log.info("APMS-S-00 Address {} for publisher", address);
-
+            log.info("APMS-S-00 publisher address {} for aws sqs ", address);
             var payload = AddressPayloadPublisherMapper.INSTANCE.map(address);
-
-            log.info("APMS-S-00 Pub message payload {}", payload);
-
+            log.info("APMS-S-01 publisher message payload {} for aws sqs ", payload);
             queueMessagingTemplate.convertAndSend(queueName,payload);
-
-            log.info("APMS-S-01 Message payload {} published ", payload);
-        }catch (Exception e){
-            //TODO trabalhar o state machine em caso de erro -> MOVER PARA NOT_READY
-            log.error("APMS-S-02 Error sending address {}", address, e);
+            log.info("APMS-S-02 message payload {} published for aws sqs ", payload);
+        }catch (NullPointerException nullPointerException){
+            log.error("APMS-S-03 error {} publisher Address {} for aws sqs ", nullPointerException, address);
+            throw new AddressValidationException(nullPointerException);
+        }catch (SdkBaseException sdkBaseException){
+            log.error("APMS-S-04 error {} publisher Address {} for aws sqs ", sdkBaseException, address);
+            throw new AddressException(sdkBaseException);
+        }catch (Exception exception){
+            log.error("APMS-S-05 error {} publisher Address {} for aws sqs ", exception, address);
+            throw new AddressException(exception);
         }
     }
 }

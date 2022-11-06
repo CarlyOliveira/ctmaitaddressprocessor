@@ -31,30 +31,30 @@ public class AddressCreateActionImpl implements AddressCreateAction {
 
             Objects.requireNonNull(address, "address cannot null");
 
-            log.info("ACAI-E-00 Criando Address {}", address);
+            log.info("ACAI-E-00 creating address {}", address);
 
             address.visit(this::setState);
             address.visit(addressRepository::insert);
 
-            log.info("ACAI-E-01 Address Criado {}", address);
+            log.info("ACAI-E-01 created address {}", address);
         }catch (NullPointerException nullPointerException){
-            log.error("ACAI-S-02 Erro {} Criando Address {}", nullPointerException, address);
+            log.error("ACAI-S-02 error {} creating address {}", nullPointerException, address);
             throw new AddressValidationException(nullPointerException);
         }catch (AddressValidationException addressValidationException){
-            log.error("ACAI-S-03 Erro {} Criando Address {}", addressValidationException, address);
+            log.error("ACAI-S-03 error {} creating address {}", addressValidationException, address);
             throw addressValidationException;
         }catch (AddressException addressException){
-            log.error("ACAI-S-04 Erro {} Criando Address {}", addressException, address);
+            log.error("ACAI-S-04 Error {} creating address {}", addressException, address);
             throw addressException;
         }catch (Exception exception){
-            log.error("ACAI-S-05 Erro {} Criando Address {}", exception, address);
+            log.error("ACAI-S-05 error {} creating Address {}", exception, address);
             throw new AddressException(exception);
         }
     }
 
     private void setState(Address address){
-        log.info("ACAI-SS-00 Setando State em Address {}", address);
+        log.info("ACAI-SS-00 set state READY in address {}", address);
         address.setState(State.READY);
-        log.info("ACAI-SS-01 State setado em Address {}", address);
+        log.info("ACAI-SS-01 seted state READY in address {}", address);
     }
 }

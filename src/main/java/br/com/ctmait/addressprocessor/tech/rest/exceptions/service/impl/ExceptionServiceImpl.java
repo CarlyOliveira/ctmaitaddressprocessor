@@ -13,7 +13,7 @@ public class ExceptionServiceImpl implements ExceptionService {
 
 	@Override
 	public ExceptionPayload generatePayload(Exception ex) {
-		logger.error("ESI-MRHE-00 Exception {}, erro {}", ex.getClass(), ex.getMessage());
+		logger.error("ESI-MRHE-00 Exception {}, error {}", ex.getClass(), ex.getMessage());
 		return ExceptionPayload.builder()
 				.error(ex.getClass().getSimpleName())
 				.error_description(ex.getMessage())
