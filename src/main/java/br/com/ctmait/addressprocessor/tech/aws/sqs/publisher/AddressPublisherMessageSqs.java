@@ -3,7 +3,7 @@ package br.com.ctmait.addressprocessor.tech.aws.sqs.publisher;
 import br.com.ctmait.addressprocessor.domain.exceptions.AddressException;
 import br.com.ctmait.addressprocessor.domain.exceptions.AddressValidationException;
 import br.com.ctmait.addressprocessor.domain.models.Address;
-import br.com.ctmait.addressprocessor.tech.aws.sqs.mapper.AddressPayloadPublisherMapper;
+import br.com.ctmait.addressprocessor.tech.aws.sqs.mapper.AddressPayloadMapper;
 import br.com.ctmait.addressprocessor.tech.infrastructure.pubsub.AddressPublisherMessage;
 import com.amazonaws.SdkBaseException;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class AddressPublisherMessageSqs implements AddressPublisherMessage {
 
         try {
             log.info("APMS-S-00 publisher address {} for aws sqs ", address);
-            var payload = AddressPayloadPublisherMapper.INSTANCE.map(address);
+            var payload = AddressPayloadMapper.INSTANCE.map(address);
             log.info("APMS-S-01 publisher message payload {} for aws sqs ", payload);
             queueMessagingTemplate.convertAndSend(queueName,payload);
             log.info("APMS-S-02 message payload {} published for aws sqs ", payload);

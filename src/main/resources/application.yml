@@ -22,6 +22,8 @@ aws:
     endpoint: http://localhost:4566
   sns:
     endpoint: http://localhost:4566
+  dynamodb:
+    endpoint: http://localhost:4566
 
 broker:
   topic:
@@ -34,6 +36,8 @@ queue:
   address-exclusao: ctmait-address-exclusao
   address-exclusao-dlq: ctmait-address-exclusao-dlq
 
-resources:
-  path:
-    get: /addressquery/api/v1/address/
+rest:
+  resources:
+    address:
+      response:
+        base-path-location: /addressquery/api/v1/address

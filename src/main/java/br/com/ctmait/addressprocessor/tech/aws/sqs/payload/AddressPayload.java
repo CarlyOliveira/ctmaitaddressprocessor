@@ -1,4 +1,4 @@
-package br.com.ctmait.addressprocessor.tech.aws.sqs.payload.publisher;
+package br.com.ctmait.addressprocessor.tech.aws.sqs.payload;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class AddressPayloadPublisher {
+public class AddressPayload {
     private UUID id;
     private String cep;
     private String logradouro;

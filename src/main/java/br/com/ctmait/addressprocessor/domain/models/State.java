@@ -3,8 +3,8 @@ package br.com.ctmait.addressprocessor.domain.models;
 import java.util.Arrays;
 
 public enum State {
-    READY("READY"),
-    NOT_READY("NOT_READY");
+    INCLUDED("INCLUDED"),
+    PUBLISHED("PUBLISHED");
 
     private String code;
 

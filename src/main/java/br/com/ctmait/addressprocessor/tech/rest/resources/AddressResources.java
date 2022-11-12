@@ -15,7 +15,7 @@ import java.net.URI;
 @Slf4j
 public class AddressResources {
 
-    @Value("${resources.path.get}")
+    @Value("${rest.resources.address.response.base-path-location}")
     private String RESPONSE_CREATE_BASE_PATH_URI;
 
     private final AddressCreateProcess addressCreateProcess;
@@ -43,7 +43,7 @@ public class AddressResources {
 
         log.info("AR-CA-02 Address {}", address);
 
-        var response = ResponseEntity.created(URI.create(RESPONSE_CREATE_BASE_PATH_URI + address.getId())).build();
+        var response = ResponseEntity.created(URI.create(RESPONSE_CREATE_BASE_PATH_URI + "/" + address.getId())).build();
 
         log.info("AR-CA-03 Response {}", response);
 

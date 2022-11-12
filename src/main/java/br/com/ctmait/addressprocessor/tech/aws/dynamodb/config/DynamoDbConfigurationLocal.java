@@ -7,6 +7,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -15,17 +16,20 @@ import org.springframework.context.annotation.Profile;
 @Profile({"local"})
 public class DynamoDbConfigurationLocal {
 
-    private static final String SERVICE_ENDPOINT = "http://localhost:4566";
-    private static final String ACCESS_KEY = "fakeAccessKeyId";
-    private static final String SECRET_KEY = "fakeSecretAccessKey";
-    private static String awsRegion = "sa-east-1";
-
+    @Value("${aws.region.static}")
+    private String awsRegion;
+    @Value("${aws.dynamodb.endpoint}")
+    private String serviceEndpoint;
+    @Value("${aws.credentials.secret-key}")
+    private String secretKey;
+    @Value("${aws.credentials.access-key}")
+    private String accessKey;
 
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB(){
-        final AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(SERVICE_ENDPOINT,awsRegion);
-        final BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY );
+        final AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(serviceEndpoint,awsRegion);
+        final BasicAWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey );
         return AmazonDynamoDBClientBuilder
                 .standard()
                 .withEndpointConfiguration(endpointConfiguration)
