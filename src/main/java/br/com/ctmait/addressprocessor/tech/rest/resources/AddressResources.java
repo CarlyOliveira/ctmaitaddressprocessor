@@ -49,4 +49,8 @@ public class AddressResources {
 
         return response;
     }
+
+    //TODO construir endpoint PATCH e implementar seu processo e suas ações
+
+    //TODO construir endpoint DELETE e implementar seu processo e suas ações
 }
