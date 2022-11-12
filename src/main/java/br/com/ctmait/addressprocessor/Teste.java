@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Teste {
     public static void main(String[] args) {
-        String valor =  null;
+        String valor =  "999999999.00";
 //        System.out.println(valor.matches("(?:\\.|[0-9])*"));
 //        System.out.println(valor.matches("[+]?[0-9]+\\.[0-9]+[0-9]+"));
         System.out.println(valor);
@@ -20,6 +20,7 @@ public class Teste {
     }
 
     private static boolean isValidValor(String valor){
+        //regex aceita apenas valores numéricos positivos e com duas casas decimais separada por ponto.
         return valor != null ? valor.matches("[+]?\\d+\\.\\d\\d") : false;
     }
 }

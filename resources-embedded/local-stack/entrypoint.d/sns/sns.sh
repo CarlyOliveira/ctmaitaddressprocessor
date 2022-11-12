@@ -14,6 +14,7 @@ sns_subscribe() {
   echo -e "Subscribe queue"
   aws sns subscribe --topic-arn arn:aws:sns:sa-east-1:000000000000:ctmait-address-events --protocol sqs --notification-endpoint arn:aws:sqs:sa-east-1:000000000000:ctmait-address-inclusao --attributes '{"FilterPolicy": "{\"event\": [\"inclusao\"]}"}' --endpoint-url=http://localhost:4566 --region=sa-east-1
   aws sns subscribe --topic-arn arn:aws:sns:sa-east-1:000000000000:ctmait-address-events --protocol sqs --notification-endpoint arn:aws:sqs:sa-east-1:000000000000:ctmait-address-alteracao --attributes '{"FilterPolicy": "{\"event\": [\"alteracao\"]}"}' --endpoint-url=http://localhost:4566 --region=sa-east-1
+  aws sns subscribe --topic-arn arn:aws:sns:sa-east-1:000000000000:ctmait-address-events --protocol sqs --notification-endpoint arn:aws:sqs:sa-east-1:000000000000:ctmait-address-exclusao --attributes '{"FilterPolicy": "{\"event\": [\"exclusao\"]}"}' --endpoint-url=http://localhost:4566 --region=sa-east-1
 
 }
 
