@@ -6,6 +6,7 @@ import br.com.ctmait.addressprocessor.domain.models.Address;
 import br.com.ctmait.addressprocessor.tech.aws.dynamodb.entity.AddressEntity;
 import br.com.ctmait.addressprocessor.tech.aws.dynamodb.mapper.AddressEntityMapper;
 import br.com.ctmait.addressprocessor.tech.infrastructure.repository.AddressRepository;
+import br.com.ctmait.addressprocessor.tech.rest.mapper.AddressMapper;
 import com.amazonaws.SdkBaseException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTableMapper;
@@ -13,6 +14,7 @@ import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.Objects;
@@ -94,6 +96,20 @@ public class AddressRepositoryDynamodb implements AddressRepository {
         }catch (Exception exception){
             log.error("ARD-D-05 error {} deleting address {} ", exception, address);
             throw new AddressException(exception);
+        }
+    }
+
+    @Override
+    public Address getById(String addressId) throws AddressValidationException, AddressException {
+        log.info("ARD-G-00 get address by id {}", addressId);
+        try {
+            var addressEntity = dynamoDBMapper.load(AddressEntity.class, addressId);
+            var address = AddressEntityMapper.INSTANCE.map(addressEntity);
+            log.info("ARD-G-01 get return address {}", address);
+            return address;
+        }catch (Exception e){
+            log.error("ARD-G-02 error {} get address by id {} ", e, addressId);
+            throw new AddressException(e);
         }
     }
 }

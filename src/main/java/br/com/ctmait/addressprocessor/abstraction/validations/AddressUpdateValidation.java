@@ -1,0 +1,10 @@
+package br.com.ctmait.addressprocessor.abstraction.validations;
+
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressException;
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressUpdateValidationException;
+import br.com.ctmait.addressprocessor.domain.models.Address;
+
+@FunctionalInterface
+public interface AddressUpdateValidation {
+    void execute(final Address address) throws AddressUpdateValidationException, AddressException;
+}

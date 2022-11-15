@@ -1,6 +1,8 @@
 package br.com.ctmait.addressprocessor.tech.rest.exceptions.handlers;
 
 import br.com.ctmait.addressprocessor.domain.exceptions.AddressCreateValidationException;
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressDeleteValidationException;
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressUpdateValidationException;
 import br.com.ctmait.addressprocessor.domain.exceptions.AddressValidationException;
 import br.com.ctmait.addressprocessor.tech.rest.exceptions.payload.ExceptionPayload;
 import br.com.ctmait.addressprocessor.tech.rest.exceptions.service.ExceptionService;
@@ -53,6 +55,20 @@ public class AddressResourcesHandler {
 
     @ExceptionHandler(AddressCreateValidationException.class)
     public ResponseEntity<ExceptionPayload> handleException(AddressCreateValidationException ex) {
+        return new ResponseEntity<ExceptionPayload>(
+                exceptionService.generatePayload(ex),
+                HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(AddressUpdateValidationException.class)
+    public ResponseEntity<ExceptionPayload> handleException(AddressUpdateValidationException ex) {
+        return new ResponseEntity<ExceptionPayload>(
+                exceptionService.generatePayload(ex),
+                HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(AddressDeleteValidationException.class)
+    public ResponseEntity<ExceptionPayload> handleException(AddressDeleteValidationException ex) {
         return new ResponseEntity<ExceptionPayload>(
                 exceptionService.generatePayload(ex),
                 HttpStatus.UNPROCESSABLE_ENTITY);

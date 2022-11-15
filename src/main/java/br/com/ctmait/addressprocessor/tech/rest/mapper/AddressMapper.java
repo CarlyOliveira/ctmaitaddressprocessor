@@ -24,6 +24,20 @@ public interface AddressMapper {
     @Mapping(source = "source.provider", target = "provider", qualifiedByName = "ProviderEnum")
     Address map (AddressPayloadIn source, String transactionId);
 
+    @Mapping(source = "source.cep", target = "cep")
+    @Mapping(source = "source.logradouro", target = "logradouro")
+    @Mapping(source = "source.complemento", target = "complemento")
+    @Mapping(source = "source.bairro", target = "bairro")
+    @Mapping(source = "source.cidade", target = "cidade")
+    @Mapping(source = "source.uf", target = "uf")
+    @Mapping(source = "source.numero", target = "numero")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "source.provider", target = "provider", qualifiedByName = "ProviderEnum")
+    Address map (AddressPayloadIn source);
+
+    @Mapping(source = "id", target = "id")
+    Address map (String id);
+
     @Named("ProviderEnum")
     default Provider getByCode(final String code) {
         return Provider.getByCode(code);

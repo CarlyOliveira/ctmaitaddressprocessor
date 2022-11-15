@@ -29,7 +29,7 @@ public class AddressPublisherActionImpl implements AddressPublisherAction {
         try{
             log.info("APAI-E-00 Publish Address {} ", address);
             address.visit(addressPublisherMessage::send);
-            address.visit(this::addressPublisherMessageSucess);
+            address.visit(this::setStatePublishedAndSave);
             log.info("APAI-E-01 Address {} Published", address);
         }catch (AddressValidationException addressValidationException){
             log.error("APAI-E-02 Publish Address {} error ", address, addressValidationException);
@@ -43,8 +43,10 @@ public class AddressPublisherActionImpl implements AddressPublisherAction {
         }
     }
 
-    private void addressPublisherMessageSucess(Address address){
-        address.setState(State.PUBLISHED);
-        addressRepository.update(address);
+    private void setStatePublishedAndSave(Address address){
+        if (address.getState() != State.EXCLUDED){
+            address.setState(State.PUBLISHED);
+            addressRepository.update(address);
+        }
     }
 }

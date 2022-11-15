@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public enum State {
     INCLUDED("INCLUDED"),
+    UPDATED("UPDATED"),
+    EXCLUDED("EXCLUDED"),
     PUBLISHED("PUBLISHED");
 
     private String code;

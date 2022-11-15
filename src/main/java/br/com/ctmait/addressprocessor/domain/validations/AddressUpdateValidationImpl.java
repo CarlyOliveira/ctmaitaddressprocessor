@@ -1,8 +1,8 @@
 package br.com.ctmait.addressprocessor.domain.validations;
 
-import br.com.ctmait.addressprocessor.abstraction.validations.AddressCreateValidation;
-import br.com.ctmait.addressprocessor.domain.exceptions.AddressCreateValidationException;
+import br.com.ctmait.addressprocessor.abstraction.validations.AddressUpdateValidation;
 import br.com.ctmait.addressprocessor.domain.exceptions.AddressException;
+import br.com.ctmait.addressprocessor.domain.exceptions.AddressUpdateValidationException;
 import br.com.ctmait.addressprocessor.domain.models.Address;
 import br.com.ctmait.addressprocessor.tech.infrastructure.annotations.Validation;
 import org.slf4j.Logger;
@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.UUID;
 
 @Validation
-public class AddressCreateValidationImpl implements AddressCreateValidation {
+public class AddressUpdateValidationImpl implements AddressUpdateValidation {
 
-    private static final Logger log = LoggerFactory.getLogger(AddressCreateValidationImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AddressUpdateValidationImpl.class);
 
     @Override
-    public void execute(Address address) throws AddressCreateValidationException, AddressException{
+    public void execute(Address address) throws AddressUpdateValidationException, AddressException{
 
-        log.info("ACVI-E-00 Validate Address {} in create process", address);
+        log.info("AUVI-E-00 Validate Address {} in update process", address);
         HashMap<String, String> errors = new HashMap<>();
         try{
             validateAddress(address, errors);
@@ -34,14 +34,14 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
             validateNumero(address, errors);
             validateProvider(address, errors);
             hasErrorsThrowRabbitValidationException(errors);
-        }catch (AddressCreateValidationException addressCreateValidationException){
-            log.error("ACVI-E-01 Validate Address {} with erros in create process", address, addressCreateValidationException);
-            throw addressCreateValidationException;
+        }catch (AddressUpdateValidationException addressUpdateValidationException){
+            log.error("AUVI-E-02 Validate Address {} with erros in update process", address, addressUpdateValidationException);
+            throw addressUpdateValidationException;
         }catch (Exception exception){
-            log.error("ACVI-E-02 Validate Address {} with erros in create process", address, exception);
+            log.error("AUVI-E-03 Validate Address {} with erros in update process", address, exception);
             throw new AddressException(exception);
         }
-        log.info("ACVI-E-03 Address {} validated in create process", address);
+        log.info("AUVI-E-04 Address {} validated in update process", address);
     }
 
     private void validateAddress(Address address, HashMap<String, String> errors){
@@ -144,7 +144,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
 
     private void hasErrorsThrowRabbitValidationException(HashMap<String, String> errors){
         if (errors.size() > 0){
-            throw new AddressCreateValidationException(errors.toString());
+            throw new AddressUpdateValidationException(errors.toString());
         }
     }
 

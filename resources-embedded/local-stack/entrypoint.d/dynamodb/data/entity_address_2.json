@@ -24,6 +24,12 @@
     },
     "numero": {
       "S": "200"
+    },
+    "provider": {
+      "S": "CTMAIT"
+    },
+    "state": {
+      "S": "INCLUDED"
     }
   }
 }

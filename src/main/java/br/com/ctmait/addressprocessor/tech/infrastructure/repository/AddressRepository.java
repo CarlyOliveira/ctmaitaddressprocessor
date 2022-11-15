@@ -8,4 +8,5 @@ public interface AddressRepository {
     void insert(Address address) throws AddressValidationException, AddressException;
     void update(Address address) throws AddressValidationException, AddressException;
     void delete(Address address) throws AddressValidationException, AddressException;
+    Address getById(String addressId) throws AddressValidationException, AddressException;
 }

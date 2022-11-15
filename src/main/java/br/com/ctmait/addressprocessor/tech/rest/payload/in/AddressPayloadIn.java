@@ -7,6 +7,7 @@ import lombok.*;
 @Setter
 @ToString
 public class AddressPayloadIn {
+    private String id;
     private String cep;
     private String logradouro;
     private String complemento;
