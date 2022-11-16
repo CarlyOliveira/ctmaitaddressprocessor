@@ -13,8 +13,6 @@ Docker
 </br>
 Java 17
 </br>
-Jakarta
-</br>
 SpringBoot
 </br>
 SpringCloud
@@ -26,5 +24,3 @@ Lombok
 MapStruct
 </br>
 Maven
-</br>
-Junit-jupiter
