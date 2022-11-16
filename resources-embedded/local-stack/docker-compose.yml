@@ -1,9 +1,9 @@
-version: '2.1'
+version: '3.8'
 
 services:
   localstack:
     container_name: ${CONTAINER_NAME}
-    image: localstack/localstack
+    image: localstack/localstack:latest
     hostname: ${CONTAINER_NAME}
     network_mode: bridge
     ports:

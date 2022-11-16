@@ -19,11 +19,11 @@ aws:
     auto: sa-east-1
     static: sa-east-1
   sqs:
-    endpoint: http://localhost:4566
+    endpoint: http://172.25.0.1:4566
   sns:
-    endpoint: http://localhost:4566
+    endpoint: http://172.25.0.1:4566
   dynamodb:
-    endpoint: http://localhost:4566
+    endpoint: http://172.25.0.1:4566
 
 broker:
   topic:

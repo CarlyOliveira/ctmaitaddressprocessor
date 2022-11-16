@@ -53,8 +53,8 @@ public class AddressCreateActionImpl implements AddressCreateAction {
     }
 
     private void setState(Address address){
-        log.info("ACAI-SS-00 set state READY in address {}", address);
+        log.info("ACAI-SS-00 set state INCLUDED in address {}", address);
         address.setState(State.INCLUDED);
-        log.info("ACAI-SS-01 seted state READY in address {}", address);
+        log.info("ACAI-SS-01 seted state INCLUDED in address {}", address);
     }
 }

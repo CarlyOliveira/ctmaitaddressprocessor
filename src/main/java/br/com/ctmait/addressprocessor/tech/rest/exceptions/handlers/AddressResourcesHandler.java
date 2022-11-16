@@ -1,9 +1,6 @@
 package br.com.ctmait.addressprocessor.tech.rest.exceptions.handlers;
 
-import br.com.ctmait.addressprocessor.domain.exceptions.AddressCreateValidationException;
-import br.com.ctmait.addressprocessor.domain.exceptions.AddressDeleteValidationException;
-import br.com.ctmait.addressprocessor.domain.exceptions.AddressUpdateValidationException;
-import br.com.ctmait.addressprocessor.domain.exceptions.AddressValidationException;
+import br.com.ctmait.addressprocessor.domain.exceptions.*;
 import br.com.ctmait.addressprocessor.tech.rest.exceptions.payload.ExceptionPayload;
 import br.com.ctmait.addressprocessor.tech.rest.exceptions.service.ExceptionService;
 import lombok.RequiredArgsConstructor;
@@ -76,6 +73,13 @@ public class AddressResourcesHandler {
 
     @ExceptionHandler(AddressValidationException.class)
     public ResponseEntity<ExceptionPayload> handleException(AddressValidationException ex) {
+        return new ResponseEntity<ExceptionPayload>(
+                exceptionService.generatePayload(ex),
+                HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(AddressException.class)
+    public ResponseEntity<ExceptionPayload> handleException(AddressException ex) {
         return new ResponseEntity<ExceptionPayload>(
                 exceptionService.generatePayload(ex),
                 HttpStatus.UNPROCESSABLE_ENTITY);
