@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "bed8e9ae-a373-4c4e-a90b-fb2efea6dfd4",
+		"name": "address processor",
+		"description": "Collection que provê exemplos e forma de consumo dos serviços da aplicação ctmaitaddressprocessor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5235604"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8085/addressprocessor/api/v1/address",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "transactionId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cep\":\"11111111\",\r\n\t\"logradouro\":\"aquela rua\",\r\n\t\"complemento\":\"casa A\",\r\n\t\"bairro\":\"aquele bairro\",\r\n\t\"cidade\":\"aquela cidade\",\r\n\t\"uf\":\"Pais Pernambuco\",\r\n\t\"numero\":\"999\",\r\n    \"provider\":\"CTMAIT\",\r\n    \"id\":\"0f06428d-ba65-493a-a27d-bbdc67ed20c3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/addressprocessor/api/v1/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"addressprocessor",
+						"api",
+						"v1",
+						"address"
+					]
+				},
+				"description": "Alteração de um recurso existente.  \nUm Id válido e existente deve ser informado, bem como todos os campos para serem atualizados ou mantidos.\n\nO transactionId no header é obrigatório."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8085/addressprocessor/api/v1/address",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "transactionId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cep\":\"11111111\",\r\n\t\"logradouro\":\"aquela rua\",\r\n\t\"complemento\":\"casa A\",\r\n\t\"bairro\":\"aquele bairro\",\r\n\t\"cidade\":\"aquela cidade\",\r\n\t\"uf\":\"Pais Pernambuco\",\r\n\t\"numero\":\"999\",\r\n    \"provider\":\"CTMAIT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/addressprocessor/api/v1/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"addressprocessor",
+						"api",
+						"v1",
+						"address"
+					]
+				},
+				"description": "Criar um novo endereço.\r\nTodos os campos devem ser preenchidos de forma válida.\r\nO transactionId no header é obrigatório."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8085/addressprocessor/api/v1/address/64fcc5d5-47fe-4275-8d48-57b3000b37ad",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "transactionId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8085/addressprocessor/api/v1/address/64fcc5d5-47fe-4275-8d48-57b3000b37ad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"addressprocessor",
+						"api",
+						"v1",
+						"address",
+						"64fcc5d5-47fe-4275-8d48-57b3000b37ad"
+					]
+				},
+				"description": "Deletar um endereço existente.\r\nDeve ser informado no path da requisição um id válido e existente para deletar o endereço.\r\ntransactionId é obrigatório no header."
+			},
+			"response": []
+		}
+	]
+}
