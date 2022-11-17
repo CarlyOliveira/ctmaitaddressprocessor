@@ -29,7 +29,6 @@ Maven
 <h3>Arquitetura da plataforma</h3>
 
 ![](ctmait-platform-address.png)
-
 <h4><p> Instruções para executar o projeto</p></h4>
 </br>
 1 - Abra o cmd, execute ipconfig, copie o endereço ipv4 do adaptador ethernet e 
