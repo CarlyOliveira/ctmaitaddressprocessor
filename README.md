@@ -24,3 +24,32 @@ Lombok
 MapStruct
 </br>
 Maven
+</br>
+
+<h4><p> Instruções para executar o projeto</p></h4>
+</br>
+1 - Abra o cmd, execute ipconfig, copie o endereço ipv4 do adaptador ethernet e 
+altere o endereço dos recursos acessados no application.yml
+</br>
+2 - Na pasta raiz do projeto executar: mvn clean install
+</br>
+3 - Na pasta recursos-embedded, execute o start-local-stack.sh para subir
+a infra provendo os serviços da aws.
+</br>
+4 - Na pasta raiz do projeto gere a imagem: docker build  -t ctmaitaddressprocessor .
+</br>
+5 - Crie/execute o container com a imagem do projeto: docker run -e "SPRING_PROFILES_ACTIVE=local" --name ctmait-addressprocessor ctmaitaddressprocessor
+</br>
+6 - Import a collection no postman e execute os serviços.
+</br>
+7 - Acessar o banco: http://localhost:8001/
+</br>
+8 - Acessar todos os serviços provisionados na localstack: https://app.localstack.cloud
+</br>
+8.1 - Faça o login
+</br>
+8.2 - Click em "resources"
+</br>
+8.3 - Vai listar todos os serviços, o que provisionamos foi SQS e DynamoDB
+</br>
+8.4 - Acesse um dos serviços provisionados e verifique os dados gerados pela aplicação
