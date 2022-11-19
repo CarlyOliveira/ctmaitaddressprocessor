@@ -19,6 +19,8 @@ SpringCloud
 </br>
 AWS - provido via localStack: AWS SQS, AWS DynamoDB
 </br>
+Docker
+</br>
 Lombok
 </br>
 MapStruct
