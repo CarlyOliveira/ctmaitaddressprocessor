@@ -33,7 +33,7 @@ public class AddressUpdateValidationImpl implements AddressUpdateValidation {
             validateUf(address, errors);
             validateNumero(address, errors);
             validateProvider(address, errors);
-            hasErrorsThrowRabbitValidationException(errors);
+            hasErrorsThrowAddressValidationException(errors);
         }catch (AddressUpdateValidationException addressUpdateValidationException){
             log.error("AUVI-E-02 Validate Address {} with erros in update process", address, addressUpdateValidationException);
             throw addressUpdateValidationException;
@@ -142,7 +142,7 @@ public class AddressUpdateValidationImpl implements AddressUpdateValidation {
     }
 
 
-    private void hasErrorsThrowRabbitValidationException(HashMap<String, String> errors){
+    private void hasErrorsThrowAddressValidationException(HashMap<String, String> errors){
         if (errors.size() > 0){
             throw new AddressUpdateValidationException(errors.toString());
         }

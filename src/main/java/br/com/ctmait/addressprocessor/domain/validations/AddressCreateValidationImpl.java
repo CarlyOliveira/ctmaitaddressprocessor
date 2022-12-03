@@ -33,7 +33,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
             validateUf(address, errors);
             validateNumero(address, errors);
             validateProvider(address, errors);
-            hasErrorsThrowRabbitValidationException(errors);
+            hasErrorsThrowAddressValidationException(errors);
         }catch (AddressCreateValidationException addressCreateValidationException){
             log.error("ACVI-E-01 Validate Address {} with erros in create process", address, addressCreateValidationException);
             throw addressCreateValidationException;
@@ -142,7 +142,7 @@ public class AddressCreateValidationImpl implements AddressCreateValidation {
     }
 
 
-    private void hasErrorsThrowRabbitValidationException(HashMap<String, String> errors){
+    private void hasErrorsThrowAddressValidationException(HashMap<String, String> errors){
         if (errors.size() > 0){
             throw new AddressCreateValidationException(errors.toString());
         }
